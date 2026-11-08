@@ -11,20 +11,53 @@ document.body.insertAdjacentHTML('afterbegin', `
         </button>
 
         <nav class="big-screen-nav">
-            <a href="index.html" onclick="toggleMenu()">Home</a>
-            <a href="#programs" onclick="toggleMenu()">Programs</a>
-            <a href="#internship" onclick="toggleMenu()">Internship</a>
-            <a href="#community" onclick="toggleMenu()">Community</a>
-            <a href="#about" onclick="toggleMenu()">About</a>
-            <a href="#contact" onclick="toggleMenu()">Contact</a>
+            <li>
+                <a class="home">Home</a>
+            </li>
+            <li class="clip-absolute program-links">
+                <a href="#programs">
+                    Programs 
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="nav-icon arrow" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+
+                    <ul class="nav-dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="nav-icon arrow" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                        <li><a href="DataAnalysis.html"><span>Data Analytics</span> <span>→</span></a></li>
+                        <li><a href="WebDev.html"><span>Web Development</span> <span>→</span></a></li>
+                    </ul>
+                </a>
+            </li>
+            <li>
+                <a href="#internship">Internship</a>
+            </li>
+            <li>
+                <a href="#community">Community</a>
+            </li>
+            <li>
+                <a href="#about">About</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            
         </nav>
 
         <a href="https://forms.gle/8EbdSy5ttGfLZfjv5?utm_source=chatgpt.com" class="nav-btn">Apply Now →</a>
     </header>
 
     <nav class="nav-links">
-        <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
-        <li><a href="#programs" onclick="toggleMenu()">Programs</a></li>
+        <li><a class="home" onclick="toggleMenu()">Home</a></li>
+        <li class="program-links"><a href="#programs">
+            Programs
+
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="nav-icon arrow" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+
+            <ul class="nav-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="nav-icon arrow" fill="#1f1f1f"><path d="M480-360 280-560h400L480-360Z"/></svg>
+                <li><a href="DataAnalysis.html"><span>Data Analytics</span> <span>→</span></a></li>
+                <li><a href="WebDev.html"><span>Web Development</span> <span>→</span></a></li>
+            </ul>
+        </a></li>
         <li><a href="#internship" onclick="toggleMenu()">Internship</a></li>
         <li><a href="#community" onclick="toggleMenu()">Community</a></li>
         <li><a href="#about" onclick="toggleMenu()">About</a></li>
@@ -144,7 +177,7 @@ document.body.insertAdjacentHTML('beforeend', `
 
             <div>
                 <h4>Quick Links</h4>
-                <a href="#home">Home</a>
+                <a class="home">Home</a>
                 <a href="#programs">Programs</a>
                 <a href="#internship">Internship</a>
                 <a href="#community">Community</a>
@@ -189,11 +222,24 @@ document.body.insertAdjacentHTML('beforeend', `
     </footer>
 `);
 
+
+
+
+const home = document.querySelectorAll(".home");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const smallScreenDropdown = document.querySelector(".nav-links .nav-dropdown");
+const bigScreenDropdown = document.querySelector(".big-screen-nav .nav-dropdown");
+const programsLinks = document.querySelectorAll(".program-links");
 
 let navOpened = false;
+//console.log(window.location.href)
 
+home.forEach(link => {
+    link.addEventListener("click", () => {
+        window.location.href = window.location.href.includes('index')? "#home" : "index.html";
+    });
+});
 
 if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
@@ -221,4 +267,25 @@ document.body.addEventListener('click', (e) => {
     if (!navLinks.contains(e.target) && navOpened && !menuToggle.contains(e.target)) {
         toggleMenu();
     }
+
+    if (!e.target.closest(".program-links")) {
+        closeDropdowns();
+    }
 });
+
+//console.log("programsLinks", programsLinks);
+
+programsLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+        dropDown = link.querySelector(".nav-dropdown");
+        dropDown.style.display = dropDown.style.display === "block" ? "none" : "block";
+    })
+});
+
+function closeDropdowns() {
+    programsLinks.forEach(link => {
+        dropDown = link.querySelector(".nav-dropdown");
+        dropDown.style.display = "none";
+    });
+};
