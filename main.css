@@ -527,10 +527,10 @@ footer h4 {
 .menu-toggle {
     display: none;
     position: fixed;
-    bottom: 20px;
+    bottom: 50px;
     right: 20px;
     border: 0;
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 20%;
     box-shadow: 0 10px 30px rgba(30,50,120,.12);
     background: var(--purple);
