@@ -527,7 +527,7 @@ footer h4 {
 .menu-toggle {
     display: none;
     position: fixed;
-    bottom: 50px;
+    bottom: 60px;
     right: 20px;
     border: 0;
     padding: 4px 10px;
