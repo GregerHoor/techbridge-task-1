@@ -257,7 +257,10 @@ document.body.insertAdjacentHTML('beforeend', `
 
 const home = document.querySelectorAll(".home");
 const internship = document.querySelectorAll(".internship-link");
+const roadMap = document.querySelectorAll(".roadmap");
 
+const webRoad = document.querySelector(".roadmap.web-dev");
+const dataRoad = document.querySelector(".roadmap.data-alt");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const smallScreenDropdown = document.querySelector(".nav-links .nav-dropdown");
@@ -327,3 +330,35 @@ function closeDropdowns() {
         dropDown.style.display = "none";
     });
 };
+
+
+const allSkBtn = document.querySelectorAll('.sk')
+
+function skBtnToggle(element) {
+    console.log('fire')
+    const skBtn = element
+    console.log(skBtn)
+    allSkBtn.forEach(sk => {
+        if (skBtn === sk) {
+            sk.classList.remove('secondary-btn');
+            sk.classList.add('primary-btn');
+        } else {
+            sk.classList.remove('primary-btn');
+            sk.classList.add('secondary-btn');
+        }
+    })
+
+}
+
+
+function displayDataTasks() {
+    roadMap.forEach(rd => rd.classList.add('d-none'));
+    
+    dataRoad.classList.remove('d-none');
+}
+
+function displayWebTasks() {
+    roadMap.forEach(rd => rd.classList.add('d-none'));
+    
+    webRoad.classList.remove('d-none');
+}
